@@ -11,6 +11,7 @@
         <router-link to="/remote1/page-a">Remote1 PageA</router-link>
         <router-link to="/remote1/page-b">Remote1 PageB</router-link>
         <router-link to="/remote2/dashboard">Remote2 Dashboard</router-link>
+        <router-link to="/remote3">Remote3 (React)</router-link>
       </nav>
     </header>
     <main class="host-main">

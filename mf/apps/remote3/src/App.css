@@ -1,0 +1,45 @@
+.remote3-app {
+  padding: 1rem;
+  border: 1px solid #61dafb;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.remote3-app h1 {
+  margin: 0 0 0.5rem 0;
+  color: #20232a;
+  font-size: 1.25rem;
+}
+
+.remote3-app p {
+  margin: 0 0 0.75rem 0;
+  color: #555;
+}
+
+.remote3-app ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #333;
+}
+
+.remote3-app .demo-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.remote3-app .demo-section h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.remote3-app .demo-section button {
+  margin-right: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.remote3-app .tech-list {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}

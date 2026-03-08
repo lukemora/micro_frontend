@@ -7,6 +7,7 @@ declare global {
   interface Window {
     remote1?: { init: (shareScope: unknown) => Promise<void>; get: (module: string) => Promise<() => unknown> }
     remote2?: { init: (shareScope: unknown) => Promise<void>; get: (module: string) => Promise<() => unknown> }
+    remote3?: { init: (shareScope: unknown) => Promise<void>; get: (module: string) => Promise<() => unknown> }
   }
   const __webpack_init_sharing__: (scope: string) => Promise<void>
   const __webpack_share_scopes__: { default: unknown }

@@ -28,6 +28,11 @@ const routes: RouteRecordRaw[] = [
     name: 'remote2-dashboard',
     component: () => import('remote2/Dashboard'),
   },
+  {
+    path: '/remote3/:pathMatch(.*)*',
+    name: 'remote3',
+    component: () => import('../views/Remote3App.vue'),
+  },
 ]
 
 const router = createRouter({

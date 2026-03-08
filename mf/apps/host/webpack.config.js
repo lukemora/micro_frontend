@@ -53,10 +53,14 @@ export default {
       filename: 'remoteEntry.js',
       exposes: {
         './store': './src/store/index.ts',
+        './sharedStateBridge': './src/shared/stateBridge.ts',
+        './api': './src/api/client.ts',
+        './navigate': './src/shared/navigate.ts',
       },
       remotes: {
         remote1: 'remote1@http://localhost:3001/remoteEntry.js',
         remote2: 'remote2@http://localhost:3002/remoteEntry.js',
+        remote3: 'remote3@http://localhost:3003/remoteEntry.js',
       },
       shared: {
         vue: { singleton: true, eager: true },

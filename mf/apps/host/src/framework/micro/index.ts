@@ -22,6 +22,11 @@ export const REMOTE_APPS: RemoteApp[] = [
     chunk: isProduction ? '/remote2/remoteEntry.js' : 'http://localhost:3002/remoteEntry.js',
     routePrefix: '/remote2',
   },
+  {
+    name: 'remote3',
+    chunk: isProduction ? '/remote3/remoteEntry.js' : 'http://localhost:3003/remoteEntry.js',
+    routePrefix: '/remote3',
+  },
 ]
 
 export function getRemoteAppByPath(path: string): RemoteApp | undefined {
