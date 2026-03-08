@@ -14,6 +14,12 @@ importers:
 
   apps/host:
     dependencies:
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.23
+      pinia:
+        specifier: ^2.1.0
+        version: 2.3.1(vue@3.5.29)
       vue:
         specifier: ^3.4.0
         version: 3.5.29
@@ -69,9 +75,18 @@ importers:
       core-js:
         specifier: ^3.35.0
         version: 3.48.0
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.23
+      pinia:
+        specifier: ^2.1.0
+        version: 2.3.1(vue@3.5.29)
       vue:
         specifier: ^3.4.0
         version: 3.5.29
+      vue-router:
+        specifier: ^4.2.0
+        version: 4.6.4(vue@3.5.29)
     devDependencies:
       '@babel/core':
         specifier: ^7.23.0
@@ -127,9 +142,18 @@ importers:
 
   apps/remote2:
     dependencies:
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.23
+      pinia:
+        specifier: ^2.1.0
+        version: 2.3.1(vue@3.5.29)
       vue:
         specifier: ^3.4.0
         version: 3.5.29
+      vue-router:
+        specifier: ^4.2.0
+        version: 4.6.4(vue@3.5.29)
     devDependencies:
       '@babel/core':
         specifier: ^7.23.0
@@ -152,6 +176,9 @@ importers:
       babel-loader:
         specifier: ^9.1.0
         version: 9.2.1(@babel/core@7.29.0)(webpack@5.105.4)
+      core-js:
+        specifier: ^3.35.0
+        version: 3.48.0
       css-loader:
         specifier: ^6.8.0
         version: 6.11.0(webpack@5.105.4)
@@ -2071,6 +2098,15 @@ packages:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
 
+  pinia@2.3.1:
+    resolution: {integrity: sha512-khUlZSwt9xXCaTbbxFYBKDc/bWAGWJjOgvxETwkTN7KRm66EeT1ZdZj6i2ceh9sP2Pzqsbc704r2yngBrxBVug==}
+    peerDependencies:
+      typescript: '>=4.4.4'
+      vue: ^2.7.0 || ^3.5.11
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   pkg-dir@4.2.0:
     resolution: {integrity: sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==}
     engines: {node: '>=8'}
@@ -2463,6 +2499,17 @@ packages:
   vary@1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
+
+  vue-demi@0.14.10:
+    resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
+    engines: {node: '>=12'}
+    hasBin: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
 
   vue-loader@17.4.2:
     resolution: {integrity: sha512-yTKOA4R/VN4jqjw4y5HrynFL8AK0Z3/Jt7eOJXEitsm0GMRHDBjCfCiuTiLP7OESvsZYo2pATCWhDqxC5ZrM6w==}
@@ -4729,6 +4776,14 @@ snapshots:
 
   picomatch@2.3.1: {}
 
+  pinia@2.3.1(vue@3.5.29):
+    dependencies:
+      '@vue/devtools-api': 6.6.4
+      vue: 3.5.29
+      vue-demi: 0.14.10(vue@3.5.29)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+
   pkg-dir@4.2.0:
     dependencies:
       find-up: 4.1.0
@@ -5145,6 +5200,10 @@ snapshots:
   uuid@8.3.2: {}
 
   vary@1.1.2: {}
+
+  vue-demi@0.14.10(vue@3.5.29):
+    dependencies:
+      vue: 3.5.29
 
   vue-loader@17.4.2(vue@3.5.29)(webpack@5.105.4):
     dependencies:

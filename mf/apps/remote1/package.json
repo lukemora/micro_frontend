@@ -9,7 +9,10 @@
   },
   "dependencies": {
     "core-js": "^3.35.0",
-    "vue": "^3.4.0"
+    "lodash": "^4.17.21",
+    "vue": "^3.4.0",
+    "vue-router": "^4.2.0",
+    "pinia": "^2.1.0"
   },
   "devDependencies": {
     "@mf-demo/mf-vue-isolation": "workspace:*",

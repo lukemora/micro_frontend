@@ -78,11 +78,17 @@ export default {
     new ModuleFederationPlugin({
       name: 'remote2',
       filename: 'remoteEntry.js',
+      remotes: {
+        host: 'host@http://localhost:3000/remoteEntry.js',
+      },
       exposes: {
         './Dashboard': './src/views/Dashboard.vue',
       },
       shared: {
         vue: { singleton: true, eager: true },
+        'vue-router': { singleton: true },
+        pinia: { singleton: true },
+        lodash: { singleton: true, requiredVersion: '^4.17.21' },
       },
     }),
     new ModuleFederationComponentPlugin({

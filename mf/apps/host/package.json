@@ -8,8 +8,10 @@
     "build": "webpack --config webpack.config.js --mode production"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
     "vue": "^3.4.0",
-    "vue-router": "^4.2.0"
+    "vue-router": "^4.2.0",
+    "pinia": "^2.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.23.0",

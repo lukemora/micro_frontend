@@ -127,3 +127,38 @@ remote-module modules 18 bytes (remote) 18 bytes (share-init)
 
 - **需要「不改主包、只改配置就接/拆子应用」或「Remote URL 必须运行时下发」** → 零引用（loadScript 方案）有实际价值。
 - **以上都不强需求** → 用标准 MF 更简单，零引用不必强求。
+
+---
+
+## 7. shared 单例与 lodash：依赖是否打进各子应用包？
+
+在 apps 中安装 lodash，在 Module Federation 的 `shared` 里配置 **单例**，各应用均以**按需引入**方式使用（如 `import get from 'lodash/get'`、`import capitalize from 'lodash/capitalize'`、`import sum from 'lodash/sum'`），然后执行 `pnpm build` 观察构建产物。
+
+### 结论：**会**——lodash 会出现在各子应用的包里
+
+- **构建时**：host、remote1、remote2 各自**独立构建**，互不知道对方会提供什么。每个应用在编译时都会把自己用到的 `lodash/xxx` 子模块打进自己的 chunk（作为本应用的 fallback）。
+- **构建日志**（节选）：
+  - remote1：`modules by path .../lodash@4.17.23/.../lodash/*.js 13.2 KiB 21 modules`（capitalize 及其依赖链）
+  - remote2：`modules by path .../lodash@4.17.23/.../lodash/*.js 1.39 KiB 3 modules`（sum、identity、_baseSum）
+- **单例** 只在**运行时**生效：当 host 与多个 remote 同时加载时，MF 运行时保证只使用**一份** lodash 实例，避免多份副本同时执行带来的状态/版本问题。单例**不会**在构建阶段把 lodash 从子应用 bundle 里剔除。
+- 因此：若希望「lodash 只打一份、其它应用不重复打包」，需要在架构上让 **某一方（通常是 host）** 作为 lodash 的提供方，并让子应用在构建时**不**把 lodash 打进自己的包（例如通过 `shared.lodash.import: false` 或 externals 等方式，具体取决于所用 MF 版本和构建配置）；仅配置 `singleton: true` 不会自动去掉各应用 bundle 里的 lodash 代码。
+
+### 子应用不打包 lodash 时，独立运行会怎样？
+
+**会受影响**。若子应用构建时不把 lodash 打进自己的包（完全依赖 shared 从 host 获取），则子应用在**独立运行**时（直接访问子应用自己的 URL，无 host）没有谁往 share scope 里 provide lodash，子应用会拿不到依赖，报错或功能异常。
+
+若既要**集成时单例**又要**子应用能独立运行**，应保留当前做法：子应用构建时**仍然**把 lodash 打进自己的包作为 **fallback**。这样在 host 里一起跑时用共享的那一份，单独跑子应用时用自己 bundle 里的 fallback，两不误。
+
+### 业界最佳实践（shared 与子应用独立运行）
+
+综合 Module Federation 官方文档与社区（如 [module-federation-examples#2219](https://github.com/module-federation/module-federation-examples/issues/2219)）的讨论，常见做法如下。
+
+| 维度 | 建议 |
+|------|------|
+| **是否让子应用不打包 shared？** | **一般不推荐**。子应用需要**独立运行**（单独打开子应用 URL、本地调试、被不同 host 接入）时，必须能在「无 host 提供 shared」时自给自足，因此应保留 **fallback**（即子应用构建时仍把该依赖打进自己的包）。只有确定子应用**永远不会独立运行**、且始终由同一 shell 先加载时，才考虑在 remote 上使用 `import: false` 不打包。 |
+| **shared 放什么？** | **按需配置，不要无脑 share 所有 package.json 依赖**。优先放：(1) **必须单例的**：Vue/React、Vue Router/React Router、Pinia/Redux、i18n 等有全局状态或上下文的；(2) **体积大且多应用共用的**：如 lodash、axios、大型 UI 库。注意：shared 的模块**无法被 tree-shake**，全量 share 大库可能反而增大首包。 |
+| **单例与版本** | 对必须单例的依赖使用 `singleton: true`，并用 `requiredVersion` 约束版本范围（如 `^4.17.21`），保证各应用版本兼容；运行时取满足要求的同一份实例。 |
+| **集成 vs 独立运行** | **主流做法**：各应用都声明同一 shared 配置（含 `requiredVersion`），且**不**设置 `import: false`，这样每个应用 bundle 里都有一份 fallback。集成时 MF 运行时用 share scope 里那一份（单例）；子应用独立运行时用自己 bundle 里的 fallback。用「重复打包一点体积」换「集成 + 独立运行都可用」。 |
+| **加载策略（MF 2.0）** | `shareStrategy: 'version-first'` 严格按版本、初始化时加载所有 remote 的 entry 做版本协商，适合版本要求严的场景；`'loaded-first'` 按需复用已加载的 shared，容错更好（某个 remote 离线不会拖垮整站初始化），可按需选用。 |
+
+**一句话**：需要子应用既能被 host 集成又能独立运行时，**保留 fallback（各应用都打包一份）是业界普遍做法**；只有在「子应用绝不独立运行」的前提下，才考虑让子应用不打包、完全依赖 host 提供。

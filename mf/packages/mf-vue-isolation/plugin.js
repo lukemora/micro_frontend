@@ -67,12 +67,18 @@ class ModuleFederationComponentPlugin {
           this.moduleFederation.includes(parentModule)
         ) {
           const request = resolveData.request
+          // 不处理 node_modules、绝对路径、webpack 内部、external
           if (
             request.includes('node_modules') ||
             path.isAbsolute(request) ||
             request.startsWith('webpack://') ||
             request.startsWith('external ')
           ) {
+            return next()
+          }
+          // 不处理裸说明符（npm 包），如 core-js/modules/xxx、vue、lodash/get，避免解析失败
+          const isBareSpecifier = !request.startsWith('.') && !request.startsWith('..') && !request.startsWith('/')
+          if (isBareSpecifier) {
             return next()
           }
           if (this.isJsModule(request)) {
