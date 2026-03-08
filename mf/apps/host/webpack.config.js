@@ -3,9 +3,24 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import { VueLoaderPlugin } from 'vue-loader'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import { getSharedConfigFromManifest } from '../../scripts/shared-config-from-manifest.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const { ModuleFederationPlugin } = webpack.container
+
+// 主应用 shared 由 shared-manifest.json 生成，remote1/remote2 等通过 usedBy 消费这些依赖
+const manifestPath = path.resolve(__dirname, '../../shared-manifest.json')
+const sharedFromManifest = getSharedConfigFromManifest(manifestPath, { eager: ['vue', 'vue-router'] })
+const shared = Object.keys(sharedFromManifest).length > 0
+  ? sharedFromManifest
+  : {
+      vue: { singleton: true, eager: true },
+      'vue-router': { singleton: true, eager: true },
+      pinia: { singleton: true, eager: true },
+      lodash: { singleton: true, requiredVersion: '^4.17.21' },
+      'element-plus': { singleton: true, requiredVersion: '^2.4.0' },
+      axios: { singleton: true, requiredVersion: '^1.6.0' },
+    }
 
 export default {
   mode: process.env.NODE_ENV || 'development',
@@ -62,12 +77,7 @@ export default {
         remote2: 'remote2@http://localhost:3002/remoteEntry.js',
         remote3: 'remote3@http://localhost:3003/remoteEntry.js',
       },
-      shared: {
-        vue: { singleton: true, eager: true },
-        'vue-router': { singleton: true, eager: true },
-        pinia: { singleton: true, eager: true },
-        lodash: { singleton: true, requiredVersion: '^4.17.21' },
-      },
+      shared,
     }),
   ],
   resolve: {

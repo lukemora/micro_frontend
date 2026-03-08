@@ -4,6 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "shared-manifest": "node scripts/generate-shared-manifest.js",
+    "validate-shared": "node scripts/validate-shared-manifest.js",
     "dev": "pnpm -r --parallel run dev",
     "dev:host": "pnpm --filter host run dev",
     "dev:remote1": "pnpm --filter remote1 run dev",
@@ -20,5 +22,13 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "pnpm": {
+    "overrides": {
+      "vue": "3.4.x",
+      "vue-router": "4.2.x",
+      "pinia": "2.1.x",
+      "element-plus": "2.4.x"
+    }
   }
 }

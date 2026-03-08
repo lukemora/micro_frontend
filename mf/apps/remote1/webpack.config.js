@@ -91,6 +91,8 @@ export default {
         'vue-router': { singleton: true },
         pinia: { singleton: true },
         lodash: { singleton: true, requiredVersion: '^4.17.21' },
+        // 幽灵依赖演示：axios 不打包，只用宿主提供的单例；若单独运行 remote1 会因无提供方报错
+        axios: { import: false, singleton: true, requiredVersion: '^1.6.0' },
       },
     }),
     new ModuleFederationComponentPlugin({

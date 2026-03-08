@@ -89,6 +89,8 @@ export default {
         'vue-router': { singleton: true },
         pinia: { singleton: true },
         lodash: { singleton: true, requiredVersion: '^4.17.21' },
+        // 版本冲突演示：此处与 host 的 element-plus 版本不一致时，singleton 会告警或异常
+        'element-plus': { singleton: true, requiredVersion: '^2.2.0' },
       },
     }),
     new ModuleFederationComponentPlugin({

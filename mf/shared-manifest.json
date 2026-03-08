@@ -1,0 +1,121 @@
+{
+  "generatedAt": "2026-03-08T12:06:16.566Z",
+  "shared": {
+    "axios": {
+      "requiredVersion": "^1.6.0",
+      "singleton": true,
+      "usedBy": [
+        "host",
+        "remote1"
+      ]
+    },
+    "element-plus": {
+      "requiredVersion": "^2.4.0",
+      "singleton": true,
+      "usedBy": [
+        "host",
+        "remote2"
+      ]
+    },
+    "lodash": {
+      "requiredVersion": "^4.17.21",
+      "singleton": true,
+      "usedBy": [
+        "host",
+        "remote1",
+        "remote2"
+      ]
+    },
+    "pinia": {
+      "requiredVersion": "^2.1.0",
+      "singleton": true,
+      "usedBy": [
+        "host",
+        "remote1",
+        "remote2"
+      ]
+    },
+    "vue": {
+      "requiredVersion": "^3.4.0",
+      "singleton": true,
+      "usedBy": [
+        "host",
+        "remote1",
+        "remote2"
+      ]
+    },
+    "vue-router": {
+      "requiredVersion": "^4.2.0",
+      "singleton": true,
+      "usedBy": [
+        "host",
+        "remote1",
+        "remote2"
+      ]
+    },
+    "react": {
+      "requiredVersion": "^18.2.0",
+      "singleton": true,
+      "usedBy": [
+        "remote3"
+      ]
+    },
+    "react-dom": {
+      "requiredVersion": "^18.2.0",
+      "singleton": true,
+      "usedBy": [
+        "remote3"
+      ]
+    },
+    "react-router-dom": {
+      "requiredVersion": "^6.22.0",
+      "singleton": true,
+      "usedBy": [
+        "remote3"
+      ]
+    }
+  },
+  "apps": [
+    {
+      "name": "host",
+      "dependencies": {
+        "@module-federation/bridge-vue3": "^2.1.0",
+        "axios": "^1.6.0",
+        "element-plus": "^2.4.0",
+        "lodash": "^4.17.21",
+        "pinia": "^2.1.0",
+        "vue": "^3.4.0",
+        "vue-router": "^4.2.0"
+      }
+    },
+    {
+      "name": "remote1",
+      "dependencies": {
+        "axios": "^1.6.0",
+        "core-js": "^3.35.0",
+        "lodash": "^4.17.21",
+        "pinia": "^2.1.0",
+        "vue": "^3.4.0",
+        "vue-router": "^4.2.0"
+      }
+    },
+    {
+      "name": "remote2",
+      "dependencies": {
+        "element-plus": "2.2.0",
+        "lodash": "^4.17.21",
+        "pinia": "^2.1.0",
+        "vue": "^3.4.0",
+        "vue-router": "^4.2.0"
+      }
+    },
+    {
+      "name": "remote3",
+      "dependencies": {
+        "@tanstack/react-query": "^5.59.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+      }
+    }
+  ]
+}

@@ -28,6 +28,11 @@ function goToAbout() {
   <div class="home-view">
     <h1>首页</h1>
     <p>主应用本地页面。访问上方「Remote1 PageA / PageB」或「Remote2 Dashboard」时才会加载对应子应用的 remoteEntry。</p>
+    <p class="pitfalls-hint">
+      <strong>共享依赖演示：</strong>
+      <a href="/remote1/page-b">Remote1 PageB</a> 使用 axios（幽灵依赖：仅 Host share，Remote1 为 <code>import: false</code>）；
+      <a href="/remote2/dashboard">Remote2 Dashboard</a> 使用 element-plus（版本冲突演示：见控制台警告）。详见 <code>docs/SHARED-DEPENDENCIES-PITFALLS.md</code>。
+    </p>
     <p class="lodash-demo">[Host] lodash.get 结果: {{ value }}</p>
 
     <section class="demo-section">
@@ -46,7 +51,17 @@ function goToAbout() {
 
 <style scoped>
 .home-view {
-  max-width: 640px;
+  max-width: 720px;
+}
+.pitfalls-hint {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: #e3f2fd;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+.pitfalls-hint a {
+  color: #1976d2;
 }
 .home-view h1 {
   margin-top: 0;

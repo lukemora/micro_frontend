@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import sum from 'lodash/sum'
 import { useRoute, useRouter } from 'vue-router'
 import { useAppStore } from 'host/store'
+import { ElButton } from 'element-plus'
 
 const total = sum([1, 2, 3, 4, 5])
 
@@ -28,9 +29,13 @@ function increment() {
     <h2>Remote2 - Dashboard</h2>
     <p class="intro">子应用 remote2 暴露的仪表盘，使用 .remote2-mf 命名空间做样式隔离。</p>
     <p class="lodash-demo">[Remote2] lodash.sum([1,2,3,4,5]) = {{ total }}</p>
+    <p class="version-demo">
+      版本冲突演示：此处使用 element-plus 的 ElButton（Remote2 声明 2.2.0，Host 为 ^2.4.0，根 overrides 会拉齐版本）。
+    </p>
     <div class="stats">
       <div class="stat-item">统计 A</div>
       <div class="stat-item">统计 B</div>
+      <ElButton type="primary">Element Plus 按钮</ElButton>
     </div>
 
     <section class="demo-section">

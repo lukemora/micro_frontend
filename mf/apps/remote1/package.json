@@ -8,11 +8,12 @@
     "build": "webpack --config webpack.config.js --mode production"
   },
   "dependencies": {
+    "axios": "^1.6.0",
     "core-js": "^3.35.0",
     "lodash": "^4.17.21",
+    "pinia": "^2.1.0",
     "vue": "^3.4.0",
-    "vue-router": "^4.2.0",
-    "pinia": "^2.1.0"
+    "vue-router": "^4.2.0"
   },
   "devDependencies": {
     "@mf-demo/mf-vue-isolation": "workspace:*",
