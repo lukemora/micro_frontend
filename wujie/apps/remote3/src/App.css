@@ -1,0 +1,32 @@
+.remote3-app {
+  padding: 1rem;
+  max-width: 560px;
+}
+.remote3-app h1 {
+  margin-top: 0;
+}
+.tech-list {
+  list-style: none;
+  padding-left: 0;
+}
+.tech-list li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #eee;
+}
+.demo-section {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #f5f5f5;
+}
+.demo-section h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+.demo-section button {
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+}

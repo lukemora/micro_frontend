@@ -1,0 +1,3 @@
+# 忽略项目内所有 node_modules（任意层级）
+node_modules/
+**/node_modules/
