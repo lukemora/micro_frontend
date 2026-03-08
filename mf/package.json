@@ -1,0 +1,22 @@
+{
+  "name": "mf-vue-demo",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm -r --parallel run dev",
+    "dev:host": "pnpm --filter host run dev",
+    "dev:remote1": "pnpm --filter remote1 run dev",
+    "dev:remote2": "pnpm --filter remote2 run dev",
+    "build": "pnpm -r run build",
+    "build:host": "pnpm --filter host run build",
+    "build:remote1": "pnpm --filter remote1 run build",
+    "build:remote2": "pnpm --filter remote2 run build"
+  },
+  "devDependencies": {
+    "pnpm": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

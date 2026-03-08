@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Sub-apps / packages (explicit)
+apps/host/node_modules/
+apps/host/dist/
+apps/remote1/node_modules/
+apps/remote1/dist/
+apps/remote2/node_modules/
+apps/remote2/dist/
+packages/*/node_modules/
+
+# Logs and cache
+*.log
+.npm
+.eslintcache
+.cache
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea
+.vscode/*.log

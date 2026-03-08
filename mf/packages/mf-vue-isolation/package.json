@@ -1,0 +1,12 @@
+{
+  "name": "@mf-demo/mf-vue-isolation",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./plugin.js",
+  "exports": {
+    ".": "./plugin.js",
+    "./plugin": "./plugin.js",
+    "./loader": "./loader.js"
+  }
+}
